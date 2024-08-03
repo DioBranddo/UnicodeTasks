@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+</head>
+<body>
+    <form action="search/" method="POST">
+        {% csrf_token %}
+        <input type="text" name="movie" placeholder="Enter Movie Name"><br><br>
+        <input type="text" name="genre" placeholder="Enter Genre"><br><br>
+        <input type="submit">
+    </form><br><br>
+    {% if movies %}
+        <h1>Search Results : </h1>
+        <ul>
+            {% for movie in movies %}
+                <li>
+                    <h3>{{movie.Title}} ({{movie.Year}})</h3>
+                    <img src="{{movie.Poster}}" alt="{{movie.Title}}">
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+    {% endif %}
+</body>
+</html>
